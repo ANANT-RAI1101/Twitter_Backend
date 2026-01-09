@@ -1,9 +1,9 @@
-import { AppError, ValidationError } from "../utils/Errors";
+import { AppError, ValidationError } from "../utils/Errors/index.js";
 import { StatusCodes } from "http-status-codes";
 
 class CrudRepository {
     constructor(model) {
-        this.model = model();
+        this.model = model;
     }
 
     async create(data) {

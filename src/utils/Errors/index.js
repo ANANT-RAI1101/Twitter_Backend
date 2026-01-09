@@ -1,6 +1,6 @@
-import ValidationError from "./validation-error";
-import AppError from "./app-error";
-import ServiceError from "./service-error";
+import ValidationError from "./validation-error.js";
+import AppError from "./app-error.js";
+import ServiceError from "./service-error.js";
 
 export {
   ValidationError,
