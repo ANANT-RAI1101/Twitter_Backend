@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-const{connect}=require("./config/database")
-const{PORT}=require("./config/server-config")
+import {connect} from './config/database.js'
+import {PORT} from './config/server-config.js'
 
 const app=express();
 app.use(bodyParser.json());
