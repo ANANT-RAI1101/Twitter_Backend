@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Tweet from "./tweet";
+import Tweet from "./tweet.js";
 
 const hashtagSchema = new mongoose.Schema({
     title:{

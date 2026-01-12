@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import TweetRepository from './repository/tweet-repository.js';
+import TweetService from './services/tweet-service.js';
 import { connect } from './config/database.js'
 import { PORT } from './config/server-config.js'
 
@@ -12,9 +12,9 @@ app.listen(PORT, async () => {
     console.log(`server is running at ${PORT}`);
     await connect();
     console.log('Mongo db connected');
-    const repo = new TweetRepository();
-    const tweets = await repo.create({
-        "content": "Hello World this Anant"
+    const tweetService = new TweetService();
+    const tweets = await tweetService.create({
+        "content": "#Heyhii Hello World this Anant"
     });
     console.log(tweets);
 
