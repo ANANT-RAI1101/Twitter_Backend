@@ -57,6 +57,7 @@ class CrudRepository {
                     StatusCodes.NOT_FOUND
                 )
             }
+            return response
         } catch (error) {
             if (error instanceof AppError) throw error;
             throw new AppError(
@@ -79,6 +80,7 @@ class CrudRepository {
                     StatusCodes.NOT_FOUND
                 )
             }
+            return response
         } catch (error) {
             if (error instanceof AppError) throw error;
             throw new AppError(
@@ -101,6 +103,7 @@ class CrudRepository {
                     StatusCodes.NOT_FOUND
                 )
             }
+            return response
         } catch (error) {
             if (error instanceof AppError) throw error;
             throw new AppError(
