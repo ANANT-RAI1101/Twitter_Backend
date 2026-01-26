@@ -1,4 +1,4 @@
-import { TweetRepository, LikeRepository } from "../repository/index.js";
+import { TweetRepository, LikeRepository,CommentRepository } from "../repository/index.js";
 import { AppError, ServiceError } from "../utils/Errors/index.js";
 import { StatusCodes } from "http-status-codes";
 
@@ -6,6 +6,7 @@ class LikeService {
     constructor() {
         this.likeRepository = new LikeRepository(),
             this.tweetRepository = new TweetRepository()
+            this.commentRepository=new CommentRepository()
     }
 
     async toggleLike(modelId, modelType, userId) {
@@ -13,7 +14,7 @@ class LikeService {
             if (modelType = "Tweet") {
                 var likeable = await this.tweetRepository.find(modelId)
             } else if (modelType = "Comments") {
-
+                var likeable=await this.commentRepository.get(modelId)
             } else {
                 throw new AppError(
                     "Service Layer Error",
