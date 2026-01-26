@@ -30,6 +30,35 @@ class TweetRepository extends CrudRepository {
             )
         }
     }
+
+    async getWithComments(id) {
+        try {
+            const tweet = await Tweet.findById(id).populate({path: 'comments',}).lean();
+            return tweet;
+        } catch (error) {
+            throw new AppError(
+                "Repository Error",
+                "cannot get what requested ",
+                "there is some error in fetching the request . Please try again later",
+                StatusCodes.INTERNAL_SERVER_ERROR
+            )
+        }
+    }
+
+    async findByPages(page, limit) {
+        try {
+            const offset = (page - 1) * limit
+            const response = await Tweet.find().skip(offset).limit(limit)
+            return response
+        } catch (error) {
+            throw new AppError(
+                "Repository Error",
+                "cannot get what requested ",
+                "there is some error in fetching the request . Please try again later",
+                StatusCodes.INTERNAL_SERVER_ERROR
+            )
+        }
+    }
 }
 
 export default TweetRepository;
