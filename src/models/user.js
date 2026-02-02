@@ -1,35 +1,45 @@
 import mongoose from "mongoose";
-import bcrypt from bcrypt
+import bcrypt from bcrypt;
+import jwt from 'jsonwebtoken';
 
-const userSchema=new mongoose.Schema({
-    email:{
-        type:String,
-        required:true,
-        unique:true
+const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+        type: String,
+        required: true
     },
-    username:{
-        type:String,
-        required:true
+    username: {
+        type: String,
+        required: true
     }
-},{timestamps:true})
+}, { timestamps: true })
 
-userSchema.pre("save",function(next){
+userSchema.pre("save", function (next) {
     const user = this
-    const SALT=bcrypt.genSaltSync(9)
-    const encryptedPassword=bcrypt.hashSync(user.password,SALT)
-    user.password=encryptedPassword
+    const SALT = bcrypt.genSaltSync(9)
+    const encryptedPassword = bcrypt.hashSync(user.password, SALT)
+    user.password = encryptedPassword
     next()
 });
 
-userSchema.methods.comparePassword=function comparePassword(password){
-    return bcrypt.compareSync(password,this.password)
+userSchema.methods.comparePassword = function comparePassword(password) {
+    return bcrypt.compareSync(password, this.password)
+}
+
+userSchema.methods.genJWt = function genJWt() {
+    return jwt.sign({
+        id: this._id, email: this.email
+    },
+        KEY, {
+        expiresIn: '1h'
+    })
 }
 
 
-const User=mongoose.model("User",userSchema)
+const User = mongoose.model("User", userSchema)
 export default User
 

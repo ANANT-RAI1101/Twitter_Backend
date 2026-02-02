@@ -31,3 +31,5 @@ class UserRepository extends CrudRepository {
         }
     }
 }
+
+export default UserRepository
