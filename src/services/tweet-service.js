@@ -15,7 +15,6 @@ class TweetService {
             console.log(tags)
             const tweet = await this.tweetRepository.create(data);
             console.log(tweet);
-            // till here every thing was fine
             let alreadyPresentTags = await this.hashtagRepository.findByName(tags);
             console.log(alreadyPresentTags)
             let titleOfPresentTags = alreadyPresentTags.map(tags => tags.title);
@@ -36,7 +35,6 @@ class TweetService {
             });
             return tweet;
         } catch (error) {
-            console.log("🔥 ACTUAL ERROR IN SERVICE:", error);
             if (error.name === "ValidationError") {
                 throw new ValidationError(error);
             }
