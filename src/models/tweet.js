@@ -17,7 +17,12 @@ const tweetSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:"Comment"
         }
-    ]
+    ],
+    images:{
+        type:[String],
+        default: []
+    }
+
 },{timestamps: true});
 
 const Tweet = mongoose.model("Tweet",tweetSchema);
