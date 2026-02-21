@@ -13,7 +13,7 @@ const commentSchema=new mongoose.Schema({
     commentable:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        refPath:onModel
+        refPath:"onModel"
     },
     likes: [
             {
