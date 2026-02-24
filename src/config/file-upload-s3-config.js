@@ -1,11 +1,12 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
+import dotenv from 'dotenv'
 
 aws.config.update({
-    region:AWS_REGION,
-    secretAccessKey:AWS_SECRET_ACCESS_KEY,
-    accessKeyId:ACCESS_KEY_ID
+    region:process.env.AWS_REGION,
+    secretAccessKey:process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId:process.env.ACCESS_KEY_ID
 })
 
 const s3 = new aws.S3();
@@ -13,7 +14,7 @@ const s3 = new aws.S3();
 const upload= multer({
     storage:multerS3({
          s3: s3,
-        bucket:BUCKET_NAME,
+        bucket:process.env.BUCKET_NAME,
         acl: 'public-read',
         metadata:function(req,res,cb){
             cb(null, {fieldName: file.fieldname});

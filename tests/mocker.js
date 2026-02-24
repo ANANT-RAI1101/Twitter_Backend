@@ -8,8 +8,8 @@ export const mockResponse=()=>{
 
 export const mockRequest=()=>{
     const req={}
-    res.body=jest.fn().mockReturnValue(req)
-    res.query=jest.fn().mockReturnValue(req)
-    res.params=jest.fn().mockReturnValue(req)
+    req.body=jest.fn().mockReturnValue(req)
+    req.query=jest.fn().mockReturnValue(req)
+    req.params=jest.fn().mockReturnValue(req)
     return req;
 }
